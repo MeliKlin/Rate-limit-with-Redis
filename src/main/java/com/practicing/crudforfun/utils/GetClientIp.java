@@ -12,15 +12,17 @@ public class GetClientIp {
 
     public String run(HttpServletRequest request) {
         String ipAddress = request.getHeader("X-Forwarded-For");
-        if(StringUtils.hasText(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
+        if(!StringUtils.hasText(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request.getHeader("Proxy-Client-IP");
+        } else {
+            System.out.println("passei aqui");
         }
 
-        if(StringUtils.hasText(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
+        if(!StringUtils.hasText(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request.getHeader("WL-Proxy-Client-IP");
         }
 
-        if(StringUtils.hasText(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
+        if(!StringUtils.hasText(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request.getRemoteAddr();
             if(LOCALHOST_IPV4.equals(ipAddress) || LOCALHOST_IPV6.equals(ipAddress)) {
                 try {
@@ -32,7 +34,7 @@ public class GetClientIp {
             }
         }
 
-        if(!StringUtils.hasText(ipAddress)
+        if(StringUtils.hasText(ipAddress)
                 && ipAddress.length() > 15
                 && ipAddress.indexOf(",") > 0) {
             ipAddress = ipAddress.substring(0, ipAddress.indexOf(","));

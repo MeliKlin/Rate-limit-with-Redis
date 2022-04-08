@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.UUID;
 
-public class CustomersRepository implements ApplicationRepository<UUID, Customer> {
+public class CustomersRepository implements CacheRepository<UUID, Customer> {
 
     private final RedissonClient redissonClient;
     private final ObjectMapper objectMapper;
