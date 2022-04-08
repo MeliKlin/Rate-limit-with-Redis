@@ -14,8 +14,6 @@ public class GetClientIp {
         String ipAddress = request.getHeader("X-Forwarded-For");
         if(!StringUtils.hasText(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request.getHeader("Proxy-Client-IP");
-        } else {
-            System.out.println("passei aqui");
         }
 
         if(!StringUtils.hasText(ipAddress) || "unknown".equalsIgnoreCase(ipAddress)) {
