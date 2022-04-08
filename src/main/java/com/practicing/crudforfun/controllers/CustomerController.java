@@ -26,7 +26,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public void teste(
+    public void createCustomer(
             @RequestBody CreateCustomerDTO customerDTO
     ) {
         if (customerDTO.isValid()) {
@@ -35,7 +35,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public Customer teste2(@PathVariable UUID id) {
+    public Customer findCustomerById(@PathVariable UUID id) {
         return new FindCustomerById(customersRepository).execute(id);
     }
 
